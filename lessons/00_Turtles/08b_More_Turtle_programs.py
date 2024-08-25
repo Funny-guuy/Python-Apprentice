@@ -8,3 +8,39 @@ Then change the code so that the turtle has a different image ( look in the 'ima
 directory ) and moves to the corners of the screen in a square pattern. 
 """
 
+import turtle 
+import random 
+
+
+def set_turtle_image(turtle, image_name):
+    """Set the turtle's shape to a custom image."""
+
+    from pathlib import Path
+    image_dir = Path(__file__).parent / "images"
+    image_path = str(image_dir / image_name)
+
+    screen = turtle.getscreen()
+    screen.addshape(image_path)
+    turtle.shape(image_path)
+    
+# Set up the screen
+screen = turtle.Screen()
+screen.setup(width=600, height=600)
+
+# Create a turtle and set its shape to the custom GIF
+t = turtle.Turtle()
+
+set_turtle_image(t, "boy_yellow.gif")
+
+t.pendown()
+t.speed(3)
+
+for i in range(100):
+    randlocation_x = random.randint(-200,200)
+    randlocation_y = random.randint(-200,200)
+    t.goto(randlocation_x, randlocation_y)
+    randlocation_x2 = random.randint(-200,200)
+    randlocation_y2 = random.randint(-200,200)
+    t.goto(randlocation_x2, randlocation_y2)
+t.penup()
+turtle.exitonclick()
